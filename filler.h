@@ -22,21 +22,25 @@ char 				**g_piece;
 
 typedef struct		s_skrr
 {
-	int				i;
-	int 			j;
+	int 			sh;
 	int				player;
 	int 			map_size_x;
 	int 			map_size_y;
+	int				x_map;
+	int 			y_map;
 	int 			piece_size_x;
 	int 			piece_size_y;
+	int 			x_piece;
+	int 			y_piece;
 
 }					t_skrr;
 
 void				basic_info(char **line, t_skrr *skrr);
 void				piece_size(char **line, t_skrr *skrr);
-void				lets_play(t_skrr *skrr);
+void				found_first(t_skrr *skrr);
+int					find_star(t_skrr *skrr, char o, char x);
 
 //tmp function, just for print some info
-void				print_info(t_skrr *skrr);
+//void				print_info(t_skrr *skrr);
 
 #endif
