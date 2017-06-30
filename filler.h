@@ -23,6 +23,8 @@ char 				**g_piece;
 typedef struct		s_skrr
 {
 	int 			sh;
+	int 			manh;
+	int 			tmp;
 	int				player;
 	int 			map_size_x;
 	int 			map_size_y;
@@ -32,6 +34,8 @@ typedef struct		s_skrr
 	int 			piece_size_y;
 	int 			x_piece;
 	int 			y_piece;
+	int 			best_x;
+	int 			best_y;
 
 }					t_skrr;
 
@@ -39,6 +43,10 @@ void				basic_info(char **line, t_skrr *skrr);
 void				piece_size(char **line, t_skrr *skrr);
 void				found_first(t_skrr *skrr);
 int					find_star(t_skrr *skrr, char o, char x);
+void				path_small(t_skrr *skrr);
+void				path_medium(t_skrr *skrr);
+//void				path_large(t_skrr *skrr);
+void				fck_best_coordinate(t_skrr *skrr, int x, int y);
 
 //tmp function, just for print some info
 //void				print_info(t_skrr *skrr);

@@ -11,20 +11,19 @@
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
 
 int 	main(void)
 {
 	char	*line;
 	t_skrr	skrr;
-	int 	fd;
+//	int 	fd;
 
 	skrr.sh = -1;
-	fd = open("test.txt", O_WRONLY);
+//	fd = open("test.txt", O_WRONLY);
 //	fd = open("small_map.txt", O_RDONLY);
 	while (get_next_line(0, &line) > 0)
 	{
-		dprintf(fd, "%s\n", line);
+//		dprintf(fd, "%s\n", line);
 		basic_info(&line, &skrr);
 		if (line[0] == '0')
 			g_map[++skrr.x_map] = ft_strsub(line, 4, ((size_t)skrr.map_size_y + 4));
@@ -34,7 +33,6 @@ int 	main(void)
 			found_first(&skrr);
 	}
 //	print_info(&skrr);
-//	close(fd);
 	return (0);
 }
 
@@ -70,48 +68,39 @@ void	basic_info(char **line, t_skrr *skrr)
 	(!(ft_strncmp(*line, "Piece", 5))) ? piece_size(line, skrr) : 0;
 }
 
-void 	piece_size(char **line, t_skrr *skrr)
-{
-	while (**line)
-	{
-		if ((**line == ' ') && (*line)++)
-		{
-			skrr->piece_size_x = ft_atoi(*line);
-			while (**line != ' ')
-				(*line)++;
-			skrr->piece_size_y = ft_atoi(*line);
-		}
-		(*line)++;
-	}
-	g_piece = ((char **)malloc(sizeof(char *) * skrr->piece_size_x));
-	skrr->sh = skrr->piece_size_x;
-}
-
 void	found_first(t_skrr *skrr)
 {
+	skrr->manh = -1;
+	skrr->tmp = 100000;
 	if (skrr->player == 1)
 	{
 		skrr->x_map = -1;
-		while ((++skrr->x_map < skrr->map_size_x) && (skrr->x_map + skrr->x_piece < skrr->map_size_x))
+		while ((++skrr->x_map < skrr->map_size_x) && ((skrr->x_map + skrr->x_piece) < skrr->map_size_x))
 		{
 			skrr->y_map = -1;
-			while ((++skrr->y_map < skrr->map_size_y) && (skrr->y_map + skrr->y_piece < skrr->map_size_y))
+			while ((++skrr->y_map < skrr->map_size_y) && ((skrr->y_map + skrr->y_piece) < skrr->map_size_y))
 			{
 				if (find_star(skrr, 'O', 'X'))
 				{
-					ft_printf("%d %d\n", skrr->x_map, skrr->y_map);
-					return ;
+					if (skrr->map_size_x == 15)
+						path_small(skrr);
+					else if (skrr->map_size_x == 24)
+						path_medium(skrr);
+//					else if (skrr->map_size_x == 99)
+//						path_large(skrr);
 				}
 			}
 		}
+		ft_printf("%d %d\n", skrr->best_x, skrr->best_y);
+		skrr->manh == -1 ? ft_printf("%d %d\n", 0, 0) : 0;
 	}
 	else if (skrr->player == 2)
 	{
 		skrr->x_map = -1;
-		while ((++skrr->x_map < skrr->map_size_x) && (skrr->x_map + skrr->x_piece < skrr->map_size_x))
+		while ((++skrr->x_map < skrr->map_size_x) && ((skrr->x_map + skrr->x_piece) < skrr->map_size_x))
 		{
 			skrr->y_map = -1;
-			while ((++skrr->y_map < skrr->map_size_y) && (skrr->y_map + skrr->y_piece < skrr->map_size_y))
+			while ((++skrr->y_map < skrr->map_size_y) && ((skrr->y_map + skrr->y_piece) < skrr->map_size_y))
 			{
 				if (find_star(skrr, 'X', 'O'))
 				{
@@ -120,6 +109,7 @@ void	found_first(t_skrr *skrr)
 				}
 			}
 		}
+		skrr->manh == -1 ? ft_printf("%d %d\n", 0, 0) : 0;
 	}
 }
 
@@ -131,10 +121,12 @@ int		find_star(t_skrr *skrr, char o, char x)
 	n = 0;
 	k = 0;
 	skrr->x_piece = -1;
-	while ((++skrr->x_piece < skrr->piece_size_x) && (skrr->x_map + skrr->x_piece < skrr->map_size_x))
+	while ((++skrr->x_piece < skrr->piece_size_x) &&
+			((skrr->x_map + skrr->x_piece) < skrr->map_size_x))
 	{
 		skrr->y_piece = -1;
-		while((++skrr->y_piece < skrr->piece_size_y) && (skrr->y_map + skrr->y_piece < skrr->map_size_y))
+		while((++skrr->y_piece < skrr->piece_size_y) &&
+				((skrr->y_map + skrr->y_piece) < skrr->map_size_y))
 		{
 			if (g_map[skrr->x_map + skrr->x_piece][skrr->y_map + skrr->y_piece] == o &&
 				g_piece[skrr->x_piece][skrr->y_piece] == '*')
@@ -150,7 +142,7 @@ int		find_star(t_skrr *skrr, char o, char x)
 		return (0);
 }
 
-//
+
 //void	print_info(t_skrr *skrr)
 //{
 //	ft_printf("Player: %d\n", skrr->player);
