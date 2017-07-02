@@ -14,18 +14,49 @@
 
 void	path_small(t_skrr *skrr)
 {
-	fck_best_coordinate(skrr, 0, 14);
+	if (skrr->player == 1)
+	{
+		if (is_it_free(8, 0, 'O', 'X'))
+			fck_best_coordinate(skrr, 8, 0);
+		else if (is_it_free(5, 16, 'O', 'X'))
+			fck_best_coordinate(skrr, 5, 16);
+		else
+			fck_best_coordinate(skrr, 14, 16);
+	}
+	if (skrr->player == 2)
+	{
+		fck_best_coordinate(skrr, 0, 8);
+	}
 }
 
 void	path_medium(t_skrr *skrr)
 {
-	fck_best_coordinate(skrr, 14, 25);
+	if (skrr->player == 1)
+	{
+		if (is_it_free(3, 0, 'O', 'X'))
+			fck_best_coordinate(skrr, 3, 0);
+		else if (is_it_free(8, 39, 'O', 'X'))
+			fck_best_coordinate(skrr, 8, 39);
+		else
+			fck_best_coordinate(skrr, 22, 39);
+	}
+	if (skrr->player == 2)
+	{
+		fck_best_coordinate(skrr, 10, 0);
+	}
 }
 
-//void	path_large(t_skrr *skrr)
-//{
-//	fck_best_coordinate(skrr, 0, 16);
-//}
+void	path_large(t_skrr *skrr)
+{
+	if (skrr->player == 1)
+	{
+		fck_best_coordinate(skrr, 0, 0);
+	}
+	if (skrr->player == 2)
+	{
+		fck_best_coordinate(skrr, 99, 99);
+	}
+}
 
 void	fck_best_coordinate(t_skrr *skrr, int x, int y)
 {
