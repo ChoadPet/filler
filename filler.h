@@ -52,7 +52,8 @@ void				path_small(t_skrr *skrr);
 void				path_medium(t_skrr *skrr);
 void				path_large(t_skrr *skrr);
 void				fck_best_coordinate(t_skrr *skrr, int x, int y);
-int					is_it_free(int x, int y, char c, char cc);
+int					is_it_free(t_skrr *skrr, int x, int y);
+int 				maybe_free(t_skrr *skrr, int x, int y, int until);
 
 //tmp function, just for print some info
 //void				print_info(t_skrr *skrr);

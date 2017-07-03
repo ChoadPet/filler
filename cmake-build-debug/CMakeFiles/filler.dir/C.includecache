@@ -9,6 +9,8 @@
 /nfs/2016/v/vpoltave/filler/filler.c
 filler.h
 /nfs/2016/v/vpoltave/filler/filler.h
+stdio.h
+-
 
 /nfs/2016/v/vpoltave/filler/filler.h
 libft/src/ft_printf/ft_printf.h

@@ -24,6 +24,8 @@ void	found_first(t_skrr *skrr)
 
 void	playing_for_o(t_skrr *skrr)
 {
+//	skrr->manh = -1;
+//	skrr->tmp = 100000;
 	skrr->x_map = -1;
 	while ((++skrr->x_map < skrr->map_size_x) &&
 			((skrr->x_map + skrr->x_piece) <= skrr->map_size_x))
@@ -44,11 +46,14 @@ void	playing_for_o(t_skrr *skrr)
 		}
 	}
 	(skrr->manh != -1) ? ft_printf("%d %d\n", skrr->best_x, skrr->best_y) :
-	ft_printf("%d %d\n", 0, 0);
+	ft_printf("0 0\n");
+	usleep(50000);
 }
 
 void	playing_for_x(t_skrr *skrr)
 {
+//	skrr->manh = -1;
+//	skrr->tmp = 1000000;
 	skrr->x_map = -1;
 	while ((++skrr->x_map < skrr->map_size_x) &&
 			((skrr->x_map + skrr->x_piece) <= skrr->map_size_x))
@@ -70,6 +75,7 @@ void	playing_for_x(t_skrr *skrr)
 	}
 	(skrr->manh != -1) ? ft_printf("%d %d\n", skrr->best_x, skrr->best_y) :
 	ft_printf("0 0\n");
+	usleep(50000);
 }
 
 int		find_star(t_skrr *skrr, char o, char x)
@@ -98,10 +104,52 @@ int		find_star(t_skrr *skrr, char o, char x)
 		return (0);
 }
 
-int		is_it_free(int x, int y, char c, char cc)
+int		is_it_free(t_skrr *skrr, int x, int y)
 {
-	if (g_map[x][y] == c || g_map[x][y] == cc)
+	int until;
+
+	if (skrr->map_size_x == 15)
+	{
+		until = 1;
+		if (maybe_free(skrr, x, y, until))
+			return(1);
 		return (0);
-	else
-		return (1);
+	}
+	else if (skrr->map_size_x == 24)
+	{
+		until = 1;
+		if (maybe_free(skrr, x, y, until))
+			return(1);
+		return (0);
+	}
+	else if (skrr->map_size_x == 100)
+	{
+		until = 1;
+		if (maybe_free(skrr, x, y, until))
+			return(1);
+		return (0);
+	}
+	return (0);
+}
+
+int 	maybe_free(t_skrr *skrr, int x, int y, int until)
+{
+	int i;
+	int j;
+
+	i = x;
+	i = (i - 1 < 0) ? x : (x - 1);
+	while ((i < (x + until)) && ((x + until) < skrr->map_size_x))
+	{
+		j = y;
+		j = (j - 1 < 0) ? y : (y - 1);
+		while ((j < (y + until)) && ((y + until) < skrr->map_size_y))
+		{
+			if ((g_map[i][j] == 'O') || (g_map[i][j] == 'X'))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return  (1);
 }

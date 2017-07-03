@@ -17,11 +17,11 @@ int 	main(void)
 {
 	char	*line;
 	t_skrr	skrr;
-//	int 	fd;
+	int 	fd;
 
 	skrr.sh = -1;
 //	fd = open("test.txt", O_WRONLY);
-//	fd = open("middle_map.txt", O_RDONLY);
+	fd = open("big_map.txt", O_RDONLY);
 	while (get_next_line(0, &line) > 0)
 	{
 //		dprintf(fd, "%s\n", line);
