@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.c                                           :+:      :+:    :+:   */
+/*   maps_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpoltave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/22 18:31:47 by vpoltave          #+#    #+#             */
-/*   Updated: 2017/06/22 18:49:58 by vpoltave         ###   ########.fr       */
+/*   Created: 2017/07/05 09:31:03 by vpoltave          #+#    #+#             */
+/*   Updated: 2017/07/05 09:31:04 by vpoltave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@ void	path_small(t_skrr *skrr)
 {
 	if (skrr->player == 1)
 	{
-		if (is_it_free(skrr, 8, 0))
-			fck_best_coordinate(skrr, 8, 0);
-		else if (is_it_free(skrr, 5, 16))
-			fck_best_coordinate(skrr, 5, 16);
+		if (is_it_free(skrr, 5, 15))
+			fck_best_coordinate(skrr, 5, 15);
+		else if (is_it_free(skrr, 13, 8))
+			fck_best_coordinate(skrr, 13, 8);
+		else if (is_it_free(skrr, 0, 8))
+			fck_best_coordinate(skrr, 0, 8);
 		else
-			fck_best_coordinate(skrr, 14, 7);
+			fck_best_coordinate(skrr, 13, 14);
 	}
 	else if (skrr->player == 2)
 	{
-		if (is_it_free(skrr, 0, 0))
-			fck_best_coordinate(skrr, 0, 0);
-		else if (is_it_free(skrr, 0, 15))
+		if (is_it_free(skrr, 0, 15))
 			fck_best_coordinate(skrr, 0, 15);
-		else if (is_it_free(skrr, 14, 0))
-			fck_best_coordinate(skrr, 14, 0);
+		else if (is_it_free(skrr, 7, 8))
+			fck_best_coordinate(skrr, 7, 8);
+		else if (is_it_free(skrr, 13, 0))
+			fck_best_coordinate(skrr, 13, 0);
+		else if (is_it_free(skrr, 10, 0))
+			fck_best_coordinate(skrr, 10, 0);
 		else
-			fck_best_coordinate(skrr, 0, 16);
+			fck_best_coordinate(skrr, 0, 15);
 	}
 }
 
@@ -40,25 +44,27 @@ void	path_medium(t_skrr *skrr)
 {
 	if (skrr->player == 1)
 	{
-		if (is_it_free(skrr, 3, 0))
-			fck_best_coordinate(skrr, 3, 0);
-		else if (is_it_free(skrr, 11, 20))
+		if (is_it_free(skrr, 11, 20))
 			fck_best_coordinate(skrr, 11, 20);
-		else if (is_it_free(skrr, 24, 39))
-			fck_best_coordinate(skrr, 24, 39);
+		else if (is_it_free(skrr, 22, 38))
+			fck_best_coordinate(skrr, 22, 38);
 		else if (is_it_free(skrr, 12, 0))
 			fck_best_coordinate(skrr, 12, 0);
+		else if (is_it_free(skrr, 20, 0))
+			fck_best_coordinate(skrr, 20, 0);
+		else if (is_it_free(skrr, 20, 10))
+			fck_best_coordinate(skrr, 20, 10);
 		else
-			fck_best_coordinate(skrr, 0, 39);
+			fck_best_coordinate(skrr, 12, 20);
 	}
 	else if (skrr->player == 2)
 	{
 		if (is_it_free(skrr, 12, 0))
 			fck_best_coordinate(skrr, 12, 0);
-		else if (is_it_free(skrr, 12, 20))
-			fck_best_coordinate(skrr, 12, 20);
+		else if (is_it_free(skrr, 12, 38))
+			fck_best_coordinate(skrr, 12, 38);
 		else
-			fck_best_coordinate(skrr, 12, 30);
+			fck_best_coordinate(skrr, 6, 20);
 	}
 }
 
@@ -68,19 +74,25 @@ void	path_large(t_skrr *skrr)
 	{
 		if (is_it_free(skrr, 60, 0))
 			fck_best_coordinate(skrr, 60, 0);
-		else if (is_it_free(skrr, 0, 99))
-			fck_best_coordinate(skrr, 0, 99);
-		else if (is_it_free(skrr, 0, 0))
-			fck_best_coordinate(skrr, 0, 0);
+		else if (is_it_free(skrr, 20, 90))
+			fck_best_coordinate(skrr, 20, 90);
+		else if (is_it_free(skrr, 98, 50))
+			fck_best_coordinate(skrr, 98, 50);
+		else if (is_it_free(skrr, 1, 1))
+			fck_best_coordinate(skrr, 1, 1);
 		else
-			fck_best_coordinate(skrr, 50, 50);
+			fck_best_coordinate(skrr, 97, 97);
 	}
 	else if (skrr->player == 2)
 	{
-		if (is_it_free(skrr, 99, 90))
-			fck_best_coordinate(skrr, 99, 90);
+		if (is_it_free(skrr, 0, 60))
+			fck_best_coordinate(skrr, 0, 60);
+		else if (is_it_free(skrr, 98, 50))
+			fck_best_coordinate(skrr, 98, 50);
+		else if (is_it_free(skrr, 80, 97))
+			fck_best_coordinate(skrr, 80, 96);
 		else
-			fck_best_coordinate(skrr, 0, 0);
+			fck_best_coordinate(skrr, 40, 96);
 	}
 }
 
@@ -95,28 +107,14 @@ void	fck_best_coordinate(t_skrr *skrr, int x, int y)
 	(q < 0) ? q *= -1 : 0;
 	(skrr->manh == -1) ? skrr->best_x = skrr->x_map : 0;
 	(skrr->manh == -1) ? skrr->best_y = skrr->y_map : 0;
-	(skrr->manh == -1) ? (skrr->manh = p + q) : (skrr->tmp = p + q);
+	if (skrr->manh == -1)
+		skrr->manh = p + q;
+	else
+		skrr->tmp = p + q;
 	if (skrr->tmp < skrr->manh)
 	{
 		skrr->manh = skrr->tmp;
 		skrr->best_x = skrr->x_map;
 		skrr->best_y = skrr->y_map;
 	}
-}
-
-void 	piece_size(char **line, t_skrr *skrr)
-{
-	while (**line)
-	{
-		if ((**line == ' ') && (*line)++)
-		{
-			skrr->piece_size_x = ft_atoi(*line);
-			while (**line != ' ')
-				(*line)++;
-			skrr->piece_size_y = ft_atoi(*line);
-		}
-		(*line)++;
-	}
-	g_piece = ((char **)malloc(sizeof(char *) * skrr->piece_size_x));
-	skrr->sh = skrr->piece_size_x;
 }

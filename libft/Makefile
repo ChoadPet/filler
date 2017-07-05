@@ -30,7 +30,6 @@ clean:
 	rm -rf src/ft_printf/*.o
 	rm -rf src/get_next_line/*.o
 	rm -rf src/libft/*.o
-	rm -rf *~
 fclean: clean
 	rm -rf $(NAME)
 re: fclean all
